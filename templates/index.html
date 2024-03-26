@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Resume Analyzer</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .upload-container { border: 2px dashed #ccc; padding: 40px; text-align: center; margin: 20px 0; }
+        .result-container { margin-top: 30px; padding: 20px; background: #f5f5f5; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>AI Resume Analyzer</h1>
+    
+    <div class="upload-container">
+        <input type="file" id="resumeUpload" accept=".pdf">
+        <button onclick="analyzeResume()">Analyze Resume</button>
+    </div>
+    
+    <div class="result-container" id="result" style="display: none;">
+        <h2>Analysis Results</h2>
+        <pre id="analysisResult"></pre>
+    </div>
+
+    <script>
+        async function analyzeResume() {
+            const fileInput = document.getElementById('resumeUpload');
+            const resultDiv = document.getElementById('result');
+            const resultPre = document.getElementById('analysisResult');
+            
+            if (!fileInput.files[0]) {
+                alert('Please select a PDF file');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('resume', fileInput.files[0]);
+            
+            try {
+                resultPre.textContent = 'Analyzing...';
+                resultDiv.style.display = 'block';
+                
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                resultPre.textContent = JSON.stringify(data, null, 2);
+                
+            } catch (error) {
+                resultPre.textContent = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
