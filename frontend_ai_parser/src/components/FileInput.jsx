@@ -9,6 +9,7 @@ const FileInput=()=>{
         <>
         <p>Upload a text File</p>
         
+
        
                 
 
