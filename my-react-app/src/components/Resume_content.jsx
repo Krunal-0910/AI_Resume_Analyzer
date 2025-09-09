@@ -15,12 +15,14 @@ const Resume_content = ()=>{
     const[showWarning,setWarning]=useState(false)
     
     const resumeDataRef = useRef(""); 
-    const onResumeChange = useCallback((data)=>{resumeDataRef.current+=data;console.log(resumeDataRef)},[])
+    const onResumeChange = useCallback((data)=>{resumeDataRef.current=data;console.log(resumeDataRef)},[])
     const handleAnalyze=()=>{
         if(resumeDataRef.current==""){
-          showWarning(true)
+          setWarning(true)
+          return;
         }
         sendResumeText(resumeDataRef.current)
+        setWarning(false)
         // setShowAnalyze(false)
                
     }
@@ -40,8 +42,8 @@ const Resume_content = ()=>{
                View Results </button>
              {showAnalyze?<ShowAnalyze onResumeChange={onResumeChange} />:<ShowResult />}
              
-             {showWarning?<p>Please Submit a Resume</p>:
-             <SubmitButtons onAnalyze={handleAnalyze}/>}
+             {showWarning?<p>Please Submit a Resume</p>:<></>}
+             <SubmitButtons onAnalyze={handleAnalyze}/>
 
              <Api resumeText={resumeText}/>
              
