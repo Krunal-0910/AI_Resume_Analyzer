@@ -4,8 +4,11 @@ import pdfplumber
 import io
 import json
 import re
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 
 def extract_text_from_pdf(file_stream):
     """Extract text from PDF file"""
@@ -72,3 +75,4 @@ def analyze_resume():
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
+    

@@ -1,23 +1,17 @@
 import { useEffect } from "react";
-const Api = ({ resumeText }) => {
+const FileApi = ( fileParse ) => {
     // This would be where you implement your API call
         fetchData();
 
 
 async function fetchData(){
        
-            console.log("Sending to API:", resumeText);
+            console.log("Sending to API:", fileParse);
             try{
                 const request = await fetch('http://127.0.0.1:5000/analyze', {
                   method: 'POST', // Specifies the method
-                  headers: {
-                    'Content-Type': 'application/json', // Indicates the format of the body
-                  },
-                  body: JSON.stringify({
-                    // The data you want to send
-                    'resume':resumeText
-                  }),
-                });
+                  body: fileParse,
+                                  });
                 if (!request.ok){
                     throw new Error("API fetching failed")
                 }
@@ -36,4 +30,4 @@ async function fetchData(){
 }
 
 
-export default Api
+export default FileApi

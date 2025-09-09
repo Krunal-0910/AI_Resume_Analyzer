@@ -3,8 +3,7 @@ import { useEffect } from "react"
 import TextInput from "./TextInput"
 import FileInput from "./FileInput"
 
-const ShowAnalyze=({onResumeChange})=>{
-    const[inputMethod, setInputMethod] = useState("text")
+const ShowAnalyze=({textareaRef,inputMethod,setInputMethod })=>{
  
     return(
         <>
@@ -36,8 +35,9 @@ const ShowAnalyze=({onResumeChange})=>{
                     <span role="img" aria-label="Upload File">📁</span> Upload Text File
                 </label>
 
-
-             {inputMethod=="text"?<TextInput onResumeChange={onResumeChange}/>:<FileInput/>}
+                
+             {inputMethod=="text"?<TextInput textareaRef={textareaRef} />:<FileInput textareaRef={textareaRef} />}
+             
 
             </div>
         </>

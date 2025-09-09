@@ -1,25 +1,28 @@
 import React from "react";
+import { useContext } from "react";
 import { useState, useEffect, useRef } from "react";
+import ShowAnalyze from "./ShowAnalyze";
 
 // TextInput component with forwardRef to expose its value
-const TextInput = ({onResumeChange})=>{
+const TextInput = ({textareaRef})=>{
     // Set initial height based on placeholder content
-    const [textValue, setTextValue] = useState('')
-    const textareaRef = useRef(null);
-    useEffect(() => {
-        if (textareaRef.current) {
-            textareaRef.current.style.height = 'auto';
-            textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
-        }
-    }, [textValue]);
+    const [text, setText] = useState('')
+     
+    // useEffect(() => {
+    //     if (textareaRef.current) {
+    //         textareaRef.current.style.height = 'auto';
+    //         textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    //     }
+    // }, [textareaRef.current]);
 
  const handleChange = (e) => {
         const newValue = e.target.value;
-        setTextValue(newValue)
+      
         // Auto-resize textarea
         // e.target.style.height = 'auto';
         // e.target.style.height = `${e.target.scrollHeight}px`;
-        onResumeChange(newValue);
+        setText(newValue)
+        textareaRef.current = newValue
     };
 
 
@@ -28,9 +31,10 @@ const TextInput = ({onResumeChange})=>{
             <h2 className="text-2xl font-bold mb-4">Paste Resume Content Here:</h2>
             
             <textarea
-                ref={textareaRef}
+                // ref={textareaRef}
                 className="w-full p-4 border border-gray-300 rounded-lg resize-none overflow-hidden"
-                value={textValue}
+                
+                value={text}
                 onChange={handleChange}
                 placeholder="Copy and paste your resume content here...
 Example:

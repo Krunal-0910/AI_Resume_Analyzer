@@ -2,15 +2,21 @@ import { useRef } from "react";
 import { useState } from "react";
 import Api from "./Api";
 
-const FileInput = () => {
+const FileInput = ({textareaRef}) => {
     const fileInputRef = useRef();
-    const formData=FormData()
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleFileChange = (e) => {
         if (e.target.files && e.target.files[0]) {
-            setSelectedFile(e.target.files[0]);
-            formData = e.target.files
+            const file = e.target.files[0]
+            setSelectedFile(file);
+                const formData  = new FormData()
+
+            formData.append('resume', file)
+            console.log("FormData",formData)
+            textareaRef.current=formData
+            console.log(formData.get('resume'))
+            
         } else {
             setSelectedFile(null);
         }

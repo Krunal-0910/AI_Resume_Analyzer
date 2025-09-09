@@ -13,13 +13,14 @@ class GeminiClient:
         You are an expert technical recruiter with 15 years of experience at top tech companies.
         Analyze the following resume and provide a detailed JSON response with these exact keys:
         
-        - "summary": A comprehensive 2-3 sentence overview of the candidate
+        You are an expert technical recruiter and career coach. Analyze the following resume and provide a JSON output with these exact keys:
+        - "summary": A two-sentence professional summary of this candidate
         - "strengths": An array of 3-5 key strengths based on their experience
-        - "technical_skills": An array of all technical skills found, categorized
-        - "experience_level": The estimated years of experience and seniority level
-        - "role_suggestions": An array of 3-5 ideal job roles for this candidate
-        - "missing_skills": An array of skills that might be missing for senior roles
-        - "red_flags": Any potential concerns or gaps in the resume
+        - "skills": An array of the top technical skills found (max 8 skills)
+        - "role_fit": The most suitable job role for this candidate
+        - "experience_level": Estimated experience level (Entry, Junior, Mid, Senior)
+        - "recommendations": An array of 3-4 actionable recommendations for improvement
+        - "ats_score": A score from 1-100 estimating ATS compatibility  
         
         Resume Text:
         {resume_text}
