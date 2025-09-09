@@ -1,10 +1,11 @@
 import { useState } from "react"
-import TextInput from "./Textput"
+import { useEffect } from "react"
+import TextInput from "./TextInput"
+import FileInput from "./FileInput"
 
-const AnalyzeResumeView=()=>{
+const ShowAnalyze=({onResumeChange})=>{
     const[inputMethod, setInputMethod] = useState("text")
-
-
+ 
     return(
         <>
         <div className="analyze_resume-main">
@@ -36,16 +37,11 @@ const AnalyzeResumeView=()=>{
                 </label>
 
 
-             {inputMethod="text"?<TextInput/>:<FileInput/>}
-                
+             {inputMethod=="text"?<TextInput onResumeChange={onResumeChange}/>:<FileInput/>}
 
-   
-
-
-            
             </div>
         </>
     )
 }
 
-export default AnalyzeResumeView
+export default ShowAnalyze

@@ -1,3 +1,5 @@
+import Resume_content from "./Resume_content"
+
 const Hero=()=>{
     return(
 <>
@@ -14,6 +16,7 @@ const Hero=()=>{
     
     </div>
    <div className="resume_content_area">
+    < Resume_content />
 
         
 
