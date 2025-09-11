@@ -10,6 +10,8 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+
+
 def extract_text_from_pdf(file_stream):
     """Extract text from PDF file"""
     try:
@@ -42,24 +44,34 @@ def index():
 def analyze_resume():
     """API endpoint to analyze resume"""
     try:
+        resume_text=""
         # Check if file was uploaded
-        if 'resume' not in request.files:
-            return jsonify({"error": "No file uploaded"}), 400
+        if request.is_json:
+            if request.resume != "":
+                resume_text=request.resume.strip()
+            
+            
         
-        file = request.files['resume']
-        
-        if file.filename == '':
-            return jsonify({"error": "No file selected"}), 400
-        
-        # Check file type
-        if not file.filename.lower().endswith('.pdf'):
-            return jsonify({"error": "Only PDF files are supported"}), 400
-        
-        # Extract text from PDF
-        resume_text = extract_text_from_pdf(file.stream)
-        
-        if not resume_text:
-            return jsonify({"error": "Could not extract text from PDF"}), 400
+        print(request.is_json)
+
+        if request.files:
+            if 'resume' not in request.files:
+                return jsonify({"error": "No file uploaded"}), 400
+            
+            file = request.files['resume']
+            
+            if file.filename == '':
+                return jsonify({"error": "No file selected"}), 400
+            
+            # Check file type
+            if not file.filename.lower().endswith('.pdf'):
+                return jsonify({"error": "Only PDF files are supported"}), 400
+            
+            # Extract text from PDF
+            resume_text = extract_text_from_pdf(file.stream)
+            
+            if not resume_text:
+                return jsonify({"error": "Could not extract text"}), 400
         
         # Send to Gemini for analysis
         ai_response = gemini_client.analyze_resume(resume_text)

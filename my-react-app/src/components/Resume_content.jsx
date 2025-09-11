@@ -8,8 +8,6 @@ import { useEffect } from "react"
 import { useCallback,createContext } from "react"
 import FileApi from "./FileAPI"
 
-    
-    const TextAreaContext = createContext()
 
 const Resume_content = ()=>{
 
@@ -33,11 +31,13 @@ const Resume_content = ()=>{
         }
         if (textareaRef.current instanceof FormData) {
 
-            FileApi(textareaRef.current,setResults)
+            FileApi(textareaRef.current, setResults)
             
         }
         else{
-        sendResumeText(textareaRef.current)
+          console.log("------------------------------------")
+        Api(textareaRef.current, setResults)
+
         setWarning(false)
         // setShowAnalyze(false)
         }
