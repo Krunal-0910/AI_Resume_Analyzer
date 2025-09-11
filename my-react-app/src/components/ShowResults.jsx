@@ -13,12 +13,16 @@ const ShowResults=({results,setResults})=>{
     console.log(basicInfo)
     return(
         <>
-        <div className="analysis-resume-main">
-            <h3>📋 Analysis Results</h3>
-            <span className="analysis_summany">
-                <h2>📋 Executive Summary</h2>
-                <span className="summary-conatainer"><p className="font-mono"> {results.summary}</p></span>
-            </span>
+        <div className="mt-4 mr-6 ">
+            <span className="mt-4 font-mono font-bold ">
+                <h2 className="text-[25px] font-bold text-gray-900 mb-6">📋 Executive Summary</h2>
+                <div className="bg-sky-50 p-2 rounded-lg shadow-sm ">
+                <p className="text-sky-900 ">
+                     {results.summary}</p>
+                     </div>
+                     
+                     </span>
+            
             <BasicInfo basicInfo={basicInfo} />
             <DetailedInfo results={results}/>
            

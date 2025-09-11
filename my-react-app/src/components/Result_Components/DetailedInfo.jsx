@@ -3,7 +3,7 @@ const DetailedInfo=({results})=>{
     console.log(key_strength)
     
     return(
-  <div className="bg-slate-100 min-h-screen p-8">
+  <div className="bg-slate-100 min-h-screen p-8 mt-8">
       {/* First Row: Strengths + Recommendations */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Strengths */}

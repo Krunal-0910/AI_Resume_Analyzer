@@ -1,22 +1,26 @@
+
+import { TbTargetArrow } from "react-icons/tb";
+
 const BasicInfo=({basicInfo})=>{
-    
+
+  
     return(
-        <div className="flex justify-between gap-8 mt-6">
+        <div className=" mt-6 flex justify-between items-center mr-3">
   <div className="flex flex-col items-center">
-    <span className="text-sm text-gray-500">Suggested Role</span>
-    <span className="text-xl font-semibold">{basicInfo.suggested_role}</span>
+    <span className="text-[15px] font-medium text-gray-600">🎯 Suggested Role</span>
+    <span className="text-[25px] font-semibold text-gray-900">{basicInfo.suggested_role}</span>
+  </div>
+  <div className="flex flex-col items-center ">
+    <span className="text-[15px] text-sm text-gray-500 font-medium">📈 Experience Level</span>
+    <span className="text-[25px] text-lg font-semibold text-gray-900">{basicInfo.experience_level}</span>
+  </div>
+  <div className="flex flex-col items-center ">
+    <span className="text-[15px] text-sm text-gray-500 font-medium">📊 ATS Score</span>
+    <span className="text-[25px] text-lg font-semibold text-gray-900">{basicInfo.ats_score}</span>
   </div>
   <div className="flex flex-col items-center">
-    <span className="text-sm text-gray-500">Experience Level</span>
-    <span className="text-xl font-semibold">{basicInfo.experience_level}</span>
-  </div>
-  <div className="flex flex-col items-center">
-    <span className="text-sm text-gray-500">ATS Score</span>
-    <span className="text-xl font-semibold">{basicInfo.ats_score}</span>
-  </div>
-  <div className="flex flex-col items-center">
-    <span className="text-sm text-gray-500">Skills Found</span>
-    <span className="text-xl font-semibold">{basicInfo.skills_found.length}</span>
+    <span className="text-[15px] text-sm text-gray-500 font-medium">🛠️ Skills Found</span>
+    <span className="text-[25px] text-lg font-semibold text-gray-900">{basicInfo.skills_found.length}/100</span>
   </div>
 </div>
 
