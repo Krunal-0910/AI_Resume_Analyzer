@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import TextInput from "./TextInput"
 import FileInput from "./FileInput"
 
-const ShowAnalyze=({textareaRef,inputMethod,setInputMethod })=>{
+const ShowAnalyze=({textareaRef,inputMethod,setInputMethod,text,setText,selectedFile, setSelectedFile })=>{
  
     return(
         <div className="mt-4">
@@ -38,7 +38,7 @@ const ShowAnalyze=({textareaRef,inputMethod,setInputMethod })=>{
                 </div>
 
                 
-             {inputMethod=="text"?<TextInput textareaRef={textareaRef} />:<FileInput textareaRef={textareaRef} />}
+             {inputMethod=="text"?<TextInput textareaRef={textareaRef} text={text} setText={setText} />:<FileInput textareaRef={textareaRef} selectedFile={selectedFile} setSelectedFile={setSelectedFile} />}
              
 
             </div>

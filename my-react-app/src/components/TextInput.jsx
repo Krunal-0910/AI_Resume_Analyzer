@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import ShowAnalyze from "./ShowAnalyze";
 
 // TextInput component with forwardRef to expose its value
-const TextInput = ({textareaRef})=>{
+const TextInput = ({textareaRef,text,setText})=>{
     // Set initial height based on placeholder content
-    const [text, setText] = useState('')
+    
      
     // useEffect(() => {
     //     if (textareaRef.current) {
@@ -21,8 +21,10 @@ const TextInput = ({textareaRef})=>{
         // Auto-resize textarea
         // e.target.style.height = 'auto';
         // e.target.style.height = `${e.target.scrollHeight}px`;
-        setText(newValue)
+        
         textareaRef.current = newValue
+            setText(newValue)
+        
     };
 
 

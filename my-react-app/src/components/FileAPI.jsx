@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-const FileApi = async ( fileParse,setResults ) => {
+const FileApi = async ( fileParse,setResults,setAnalysis_complete ) => {
             try{
                 const request = await fetch('http://127.0.0.1:5000/analyze', {
                   method: 'POST', // Specifies the method
@@ -18,8 +18,9 @@ const FileApi = async ( fileParse,setResults ) => {
             //     'ats_score': 75}
 
 
-      
+                
                 setResults(data)
+                setAnalysis_complete(true)
             }
             catch(e){
                 console.error(e)

@@ -7,6 +7,10 @@ import { useRef } from "react"
 import { useEffect } from "react"
 import { useCallback,createContext } from "react"
 import FileApi from "./FileAPI"
+import { IoMdCheckbox } from "react-icons/io";
+import { FaCheckCircle } from "react-icons/fa";
+
+
 
 
 const Resume_content = ()=>{
@@ -21,6 +25,10 @@ const Resume_content = ()=>{
     const[showWarning,setWarning]=useState(false)
     const[inputMethod, setInputMethod] = useState("text")
     const [results, setResults]=useState("")
+    const [analysis_complete,setAnalysis_complete]=useState(false)
+    const [text, setText] = useState("")
+        const [selectedFile, setSelectedFile] = useState(null);
+
     // const[fileResume,setFileResume] =(false)
     const textareaRef = useRef("");
     const handleAnalyze=()=>{
@@ -31,16 +39,27 @@ const Resume_content = ()=>{
         }
         if (textareaRef.current instanceof FormData) {
 
-            FileApi(textareaRef.current, setResults)
+            FileApi(textareaRef.current, setResults, setAnalysis_complete)
             
         }
         else{
           console.log("------------------------------------")
-        Api(textareaRef.current, setResults)
+        Api(textareaRef.current, setResults, setAnalysis_complete)
 
         setWarning(false)
         // setShowAnalyze(false)
         }
+    }
+
+    const handleClear=()=>{
+      setAnalysis_complete(false)
+      setResults(false)
+      setResults("")
+      setWarning(false)
+      textareaRef.current=""
+      setText("")
+      setSelectedFile(null);
+      
     }
 
     // const handleShowAnalyze=()=>{
@@ -68,19 +87,32 @@ const Resume_content = ()=>{
       </nav>
     </div>
                
-             {activeTab=="showAnalyze"?
-             <ShowAnalyze textareaRef={textareaRef} inputMethod={inputMethod} setInputMethod={setInputMethod} />
-             
-             :<ShowResults results={results} setResults={setResults} />}
-             
-             {showWarning?<p>Please Submit a Resume</p>:<></>}
-             <SubmitButtons onAnalyze={handleAnalyze}/>
-              {resumeText==""?<></>:<Api resumeText={resumeText}/>}
-             
-             
-            
-            
+         {activeTab=="showAnalyze"?
+           (
+            <>
+            <ShowAnalyze textareaRef={textareaRef} inputMethod={inputMethod} setInputMethod={setInputMethod} text={text} setText={setText}
+             selectedFile={selectedFile} setSelectedFile={setSelectedFile} />
 
+             {showWarning?<p>Please Submit a Resume</p>:<></>}
+             <SubmitButtons onAnalyze={handleAnalyze} onClear={handleClear}/>
+             {analysis_complete&&(
+              <div className=" mt-4 flex items-center gap-2 p-4 rounded-lg bg-green-100 border border-green-300">
+                    <FaCheckCircle className="text-green-600 text-xl" />
+                    <p className="text-green-700 font-medium">
+                      Analysis Complete! Click on the View Results to see the results
+                    </p>
+                  </div>
+             )}
+              
+             
+            </>
+           )
+             
+             :
+             
+             (analysis_complete && <ShowResults results={results} setResults={setResults}/>)
+            }
+           
         </div>
     )
     

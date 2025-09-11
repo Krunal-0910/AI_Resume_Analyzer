@@ -1,5 +1,6 @@
 
-const SubmitButtons=({onAnalyze})=>{
+const SubmitButtons=({onAnalyze,onClear})=>{
+    
     return(
 
 <div className="submitButtons flex gap-4 mt-4">
@@ -10,7 +11,7 @@ const SubmitButtons=({onAnalyze})=>{
                 <span role="img" aria-label="search">🔍</span>
                 Analyze My Resume
             </button>
-            <button type="button"
+            <button type="button" onClick={onClear}
             className="w-full bg-white border border-gray-300 text-blue-600 font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors"
            
             >

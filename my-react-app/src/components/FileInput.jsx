@@ -2,15 +2,14 @@ import { useRef } from "react";
 import { useState } from "react";
 import Api from "./Api";
 
-const FileInput = ({textareaRef}) => {
+const FileInput = ({textareaRef,selectedFile,setSelectedFile}) => {
     const fileInputRef = useRef();
-    const [selectedFile, setSelectedFile] = useState(null);
 
     const handleFileChange = (e) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0]
             setSelectedFile(file);
-                const formData  = new FormData()
+            const formData  = new FormData()
 
             formData.append('resume', file)
             console.log("FormData",formData)
@@ -22,10 +21,6 @@ const FileInput = ({textareaRef}) => {
         }
     };
 
-    const handleClear = () => {
-        setSelectedFile(null);
-        fileInputRef.current.value = "";
-    };
 
     return (
         <div className="w-full mt-4">
@@ -65,13 +60,7 @@ const FileInput = ({textareaRef}) => {
             {selectedFile && (
                 <div className="mt-4 bg-white border border-gray-300 rounded-lg px-4 py-2 flex items-center justify-between">
                     <span className="text-gray-700">{selectedFile.name}</span>
-                        <button
-                            type="button"
-                            className="text-red-500 hover:underline ml-4"
-                            onClick={handleClear}
-                        >
-                            Remove
-                        </button>
+                       
                 </div>
             )}
         </div>
