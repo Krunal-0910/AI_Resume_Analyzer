@@ -45,14 +45,11 @@ def analyze_resume():
     """API endpoint to analyze resume"""
     try:
         resume_text=""
+        data = request.get_json()
         # Check if file was uploaded
-        if request.is_json:
-            if request.resume != "":
-                resume_text=request.resume.strip()
-            
-            
-        
-        print(request.is_json)
+        if data:
+            print(data)
+            resume_text = data
 
         if request.files:
             if 'resume' not in request.files:
@@ -70,9 +67,10 @@ def analyze_resume():
             # Extract text from PDF
             resume_text = extract_text_from_pdf(file.stream)
             
-            if not resume_text:
-                return jsonify({"error": "Could not extract text"}), 400
+        if not resume_text:
+            return jsonify({"error": "Could not extract text"}), 400
         
+
         # Send to Gemini for analysis
         ai_response = gemini_client.analyze_resume(resume_text)
         
