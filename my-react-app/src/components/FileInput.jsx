@@ -28,7 +28,7 @@ const FileInput = ({textareaRef}) => {
     };
 
     return (
-        <div className="w-full">
+        <div className="w-full mt-4">
             <div className="flex items-center mb-2">
                 <label className="font-medium mr-2">Upload a file</label>
                 <div className="relative group">

@@ -6,11 +6,13 @@ import FileInput from "./FileInput"
 const ShowAnalyze=({textareaRef,inputMethod,setInputMethod })=>{
  
     return(
-        <>
+        <div className="mt-4">
+
         <div className="analyze_resume-main">
             <h1>Choose Input Method</h1>
             
-           <label className="radio-label">
+        <div className="mt-4 flex gap-4">
+           <label className="">
                     <input
                         type="radio"
                         name="inputMethod"
@@ -22,7 +24,7 @@ const ShowAnalyze=({textareaRef,inputMethod,setInputMethod })=>{
                     <span className="custom-radio-btn"></span>
                     <span role="img" aria-label="Paste Text">📄</span> Paste Text
                 </label>
-                <label className="radio-label">
+                <label className="">
                     <input
                         type="radio"
                         name="inputMethod"
@@ -31,16 +33,16 @@ const ShowAnalyze=({textareaRef,inputMethod,setInputMethod })=>{
                         onChange={() => setInputMethod("file")}
                         className="custom-radio"
                     />
-                    <span className="custom-radio-btn"></span>
-                    <span role="img" aria-label="Upload File">📁</span> Upload Text File
+                    <span role="img"  className="ml-2"aria-label="Upload File">📁</span> Upload Text File
                 </label>
+                </div>
 
                 
              {inputMethod=="text"?<TextInput textareaRef={textareaRef} />:<FileInput textareaRef={textareaRef} />}
              
 
             </div>
-        </>
+        </div>
     )
 }
 

@@ -27,12 +27,12 @@ const TextInput = ({textareaRef})=>{
 
 
     return (
-        <div className="max-w-2xl mx-auto p-6">
+        <div className=" max-w-2xl mt-4">
             <h2 className="text-2xl font-bold mb-4">Paste Resume Content Here:</h2>
             
             <textarea
                 // ref={textareaRef}
-                className="w-full p-4 border border-gray-300 rounded-lg resize-none overflow-hidden"
+                className="w-full p-4 border border-gray-300 rounded-lg resize-none overflow-hidden bg-gray-100"
                 
                 value={text}
                 onChange={handleChange}
