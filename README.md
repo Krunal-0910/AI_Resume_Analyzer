@@ -18,7 +18,7 @@ A modern web application that uses AI to analyze resumes and provide professiona
 - **Frontend**: React.js with Tailwind CSS
 - **Backend**: Python Flask
 - **AI Model**: Google Gemini 2.0 Flash
-- **File Processing**: PDF text extraction libraries
+- **File Processing**: PDF text, word text extraction libraries,
 
 ## 🌟 Features in Detail
 - AI-Powered Analysis
