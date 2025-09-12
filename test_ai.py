@@ -5,6 +5,7 @@ import io
 import json
 import re
 from flask_cors import CORS
+from docx import Document
 
 
 app = Flask(__name__)
@@ -24,6 +25,19 @@ def extract_text_from_pdf(file_stream):
         return text.strip()
     except Exception as e:
         raise Exception(f"PDF processing error: {str(e)}")
+    
+def extract_text_from_word(file):
+    """Extract text from .docx file"""
+    try:
+        text = []
+        doc = Document(file)
+        for para in doc:
+             text.append(para)
+        return "/n".join(text)
+    except Exception as e:
+        raise Exception(f"word processing error: {str(e)}")
+
+
 
 def clean_json_response(ai_response):
     """Clean and parse the AI response to ensure valid JSON"""
@@ -60,11 +74,12 @@ def analyze_resume():
                 return jsonify({"error": "No file selected"}), 400
             
             # Check file type
-            if not file.filename.lower().endswith('.pdf'):
+            if file.filename.lower().endswith('.pdf'):
                 return jsonify({"error": "Only PDF files are supported"}), 400
-            
+            elif file.filename.lower().endswith('.docx'):
             # Extract text from PDF
-            resume_text = extract_text_from_pdf(file.stream)
+                word_text = extract_text_from_pdf(file.stream)
+                print(word_text)
         else:
             return jsonify({"error":"Unexpected Request Header"})
         if not resume_text:
