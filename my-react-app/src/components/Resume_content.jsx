@@ -27,29 +27,58 @@ const Resume_content = ()=>{
     const [results, setResults]=useState("")
     const [analysis_complete,setAnalysis_complete]=useState(false)
     const [text, setText] = useState("")
-        const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedFile, setSelectedFile] = useState(null);
+    const[showAnalyzing, setShowAnalyzing] = useState(false)
+    const analyzingRef = useRef(null);
+const completeRef = useRef(null);
+
+       useEffect(() => {
+        if (showAnalyzing && analyzingRef.current) {
+          analyzingRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      }, [showAnalyzing]);
+
+      // 👇 scroll when analysis_complete changes
+        useEffect(() => {
+        if (analysis_complete && completeRef.current) {
+          completeRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      }, [analysis_complete]);
 
     // const[fileResume,setFileResume] =(false)
     const textareaRef = useRef("");
+
+
     const handleAnalyze=()=>{
+
         // if(inputMethod=="text"){
         if(textareaRef.current==""){
           setWarning(true)
           return;
         }
+         setShowAnalyzing(true)
         if (textareaRef.current instanceof FormData) {
 
-            FileApi(textareaRef.current, setResults, setAnalysis_complete)
+            FileApi(textareaRef.current, setResults, setAnalysis_complete,setShowAnalyzing)
             
         }
         else{
           console.log("------------------------------------")
-        Api(textareaRef.current, setResults, setAnalysis_complete)
+        Api(textareaRef.current, setResults, setAnalysis_complete,setShowAnalyzing)
 
         setWarning(false)
-        // setShowAnalyze(false)
-        }
-    }
+ 
+              // setShowAnalyze(false)
+              }
+            }
+       
+    
 
     const handleClear=()=>{
       setAnalysis_complete(false)
@@ -59,12 +88,12 @@ const Resume_content = ()=>{
       textareaRef.current=""
       setText("")
       setSelectedFile(null);
+      setShowAnalyzing(false)
       
     }
 
     // const handleShowAnalyze=()=>{
     // }
-    
     return(
 
         <div className="mt-18">
@@ -95,8 +124,18 @@ const Resume_content = ()=>{
 
              {showWarning?<p>Please Submit a Resume</p>:<></>}
              <SubmitButtons onAnalyze={handleAnalyze} onClear={handleClear}/>
+             {showAnalyzing && (
+              <div className=" mt-4 flex items-center gap-2 p-4 rounded-lg bg-green-100 border border-green-300"
+                    ref ={analyzingRef} >
+                    
+                    <p className="text-green-700 font-medium">
+                      ⏳ Analyzing your resume... please wait a moment
+                    </p>
+                  </div>
+              )}
              {analysis_complete&&(
-              <div className=" mt-4 flex items-center gap-2 p-4 rounded-lg bg-green-100 border border-green-300">
+              <div className=" mt-4 flex items-center gap-2 p-4 rounded-lg bg-green-100 border border-green-300"
+                    ref={completeRef}>
                     <FaCheckCircle className="text-green-600 text-xl" />
                     <p className="text-green-700 font-medium">
                       Analysis Complete! Click on the View Results to see the results
@@ -109,6 +148,7 @@ const Resume_content = ()=>{
            )
              
              :
+             
              
              (analysis_complete && <ShowResults results={results} setResults={setResults}/>)
             }

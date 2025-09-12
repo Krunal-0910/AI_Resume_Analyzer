@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-const Api = async ( resumeText, setResults,setAnalysis_complete ) => {
+const Api = async ( resumeText, setResults,setAnalysis_complete,setShowAnalyzing ) => {
  
        
             console.log("Sending to API:", resumeText);
@@ -22,6 +22,7 @@ const Api = async ( resumeText, setResults,setAnalysis_complete ) => {
                 
                 setResults(data)
                 setAnalysis_complete(true)
+                setShowAnalyzing(false)
             }
             catch(e){
                 console.error(e)

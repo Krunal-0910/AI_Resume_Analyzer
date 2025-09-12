@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-const FileApi = async ( fileParse,setResults,setAnalysis_complete ) => {
+const FileApi = async ( fileParse,setResults,setAnalysis_complete,setShowAnalyzing ) => {
             try{
                 const request = await fetch('http://127.0.0.1:5000/analyze', {
                 method: 'POST', body: fileParse
@@ -20,6 +20,7 @@ const FileApi = async ( fileParse,setResults,setAnalysis_complete ) => {
                 
                 setResults(data)
                 setAnalysis_complete(true)
+                setShowAnalyzing(false)
             }
             catch(e){
                 console.error(e)
