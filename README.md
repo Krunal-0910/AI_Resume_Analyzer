@@ -20,18 +20,13 @@ A modern web application that uses AI to analyze resumes and provide professiona
 - **AI Model**: Google Gemini 2.0 Flash
 - **File Processing**: PDF text extraction libraries
 
-🌟 Features in Detail
-AI-Powered Analysis
-Extracts key information from resumes using Gemini AI
+## 🌟 Features in Detail
+- AI-Powered Analysis
+- Extracts key information from resumes using Gemini AI
+- Identifies strengths and areas for improvement
+- Provides industry-specific insights
+- Evaluates resume compatibility with Applicant Tracking Systems
+- Scores out of 100 with detailed breakdown
+- Suggestions to improve ATS performance
 
-Identifies strengths and areas for improvement
-
-Provides industry-specific insights
-
-Evaluates resume compatibility with Applicant Tracking Systems
-
-Scores out of 100 with detailed breakdown
-
-Suggestions to improve ATS performance
-
-Note: This application requires an API key for Google Gemini. You can obtain one from Google AI Studio.
+## Note: This application requires an API key for Google Gemini. You can obtain one from Google AI Studio.
