@@ -2,9 +2,8 @@ import { useEffect } from "react";
 const FileApi = async ( fileParse,setResults,setAnalysis_complete ) => {
             try{
                 const request = await fetch('http://127.0.0.1:5000/analyze', {
-                  method: 'POST', // Specifies the method
-                  body: fileParse,
-                                  });
+                method: 'POST', body: fileParse
+                });
                 if (!request.ok){
                     throw new Error("API fetching failed")
                 }

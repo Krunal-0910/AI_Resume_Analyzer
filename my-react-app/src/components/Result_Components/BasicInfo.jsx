@@ -16,11 +16,11 @@ const BasicInfo=({basicInfo})=>{
   </div>
   <div className="flex flex-col items-center ">
     <span className="text-[15px] text-sm text-gray-500 font-medium">📊 ATS Score</span>
-    <span className="text-[25px] text-lg font-semibold text-gray-900">{basicInfo.ats_score}</span>
+    <span className="text-[25px] text-lg font-semibold text-gray-900">{basicInfo.ats_score}/100</span>
   </div>
   <div className="flex flex-col items-center">
     <span className="text-[15px] text-sm text-gray-500 font-medium">🛠️ Skills Found</span>
-    <span className="text-[25px] text-lg font-semibold text-gray-900">{basicInfo.skills_found.length}/100</span>
+    <span className="text-[25px] text-lg font-semibold text-gray-900">{basicInfo.skills_found.length}</span>
   </div>
 </div>
 

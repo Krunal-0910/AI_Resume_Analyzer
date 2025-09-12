@@ -3,15 +3,16 @@ const DetailedInfo=({results})=>{
     console.log(key_strength)
     
     return(
+      
   <div className="bg-slate-100 min-h-screen p-8 mt-8">
       {/* First Row: Strengths + Recommendations */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Strengths */}
-        <div>
+        <div >
           <h2 className="text-xl font-bold flex items-center gap-2 mb-4">
             <span>💪</span> Key Strengths
           </h2>
-          <div className="space-y-3">
+          <div className="mt-8 space-y-7">
             {results.strengths.map((s, i) => (
               <div
                 key={i}
@@ -27,19 +28,19 @@ const DetailedInfo=({results})=>{
 
         {/* Recommendations */}
         <div>
-          <h2 className="text-xl font-bold flex items-center gap-2 mb-4">
+          <h2 className="text-[22px] font-bold flex items-center gap-2">
             <span>📊</span> Recommendations for Improvement
           </h2>
-          <div className="space-y-3">
+          <div className="mt-8 space-y-3">
             {results.recommendations.map((r, i) => (
               <div
                 key={i}
-                className="bg-yellow-100 border border-yellow-300 shadow rounded-xl p-4"
+                className="bg-yellow-50 border-l-4 border-red-400 shadow rounded-xl p-4"
               >
-                <span className="font-semibold text-red-600">
+                <span className="font-semibold text-gray-600">
                   📌 Recommendation #{i + 1}
                 </span>
-                <p className="text-gray-700 mt-1">{r}</p>
+                <p className="text-gray-700 mt-1 font-mono font-semibold">{r}</p>
               </div>
             ))}
           </div>
@@ -55,7 +56,7 @@ const DetailedInfo=({results})=>{
           {results.skills.map((skill, i) => (
             <span
               key={i}
-              className="bg-yellow-100 border border-yellow-300 text-grey-800 px-4 py-2 rounded-full shadow-sm"
+              className=" font-mono bg-yellow-50 border border-yellow-300 text-grey-500 px-4 py-2 rounded-full shadow-sm font-semibold"
             >
               {skill}
             </span>

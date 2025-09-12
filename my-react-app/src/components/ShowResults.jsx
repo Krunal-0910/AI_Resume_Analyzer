@@ -13,7 +13,7 @@ const ShowResults=({results,setResults})=>{
     console.log(basicInfo)
     return(
         <>
-        <div className="mt-4 mr-6 ">
+        <div className="mt-4 mr-6 mb-4 ">
             <span className="mt-4 font-mono font-bold ">
                 <h2 className="text-[25px] font-bold text-gray-900 mb-6">📋 Executive Summary</h2>
                 <div className="bg-sky-50 p-2 rounded-lg shadow-sm ">
@@ -24,6 +24,7 @@ const ShowResults=({results,setResults})=>{
                      </span>
             
             <BasicInfo basicInfo={basicInfo} />
+           
             <DetailedInfo results={results}/>
            
             </div>

@@ -1,5 +1,6 @@
 const Navbar = () => {
   return (
+    
     <div className=" w-64 bg-gray-100 text-gray-100 flex flex-col p-6 shadow-lg">
       {/* Logo / App Name */}
       <div className="text-[20px] text-black font-bold mb-8">
@@ -47,6 +48,7 @@ const Navbar = () => {
         © 2025 Resume Analyzer
       </div>
     </div>
+    
   );
 };
 

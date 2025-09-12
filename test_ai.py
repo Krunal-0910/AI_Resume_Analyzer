@@ -28,7 +28,7 @@ def extract_text_from_pdf(file_stream):
 def clean_json_response(ai_response):
     """Clean and parse the AI response to ensure valid JSON"""
     try:
-        # Remove markdown code blocks if present
+        
         cleaned_response = re.sub(r'```json\s*|\s*```', '', ai_response).strip()
         return json.loads(cleaned_response)
     except json.JSONDecodeError:
@@ -45,13 +45,12 @@ def analyze_resume():
     """API endpoint to analyze resume"""
     try:
         resume_text=""
-        data = request.get_json()
-        # Check if file was uploaded
-        if data:
-            print(data)
-            resume_text = data
-
-        if request.files:
+        if request.is_json:            
+            data = request.get_json()
+            if not data or "resume" not in data:
+                return jsonify({"error":"No Text Detacted"})
+            resume_text  = data["resume"]
+        elif request.files:
             if 'resume' not in request.files:
                 return jsonify({"error": "No file uploaded"}), 400
             
@@ -66,9 +65,10 @@ def analyze_resume():
             
             # Extract text from PDF
             resume_text = extract_text_from_pdf(file.stream)
-            
+        else:
+            return jsonify({"error":"Unexpected Request Header"})
         if not resume_text:
-            return jsonify({"error": "Could not extract text"}), 400
+            return jsonify({"error": "No Text Found !"}), 400
         
 
         # Send to Gemini for analysis
