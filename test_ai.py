@@ -31,9 +31,10 @@ def extract_text_from_word(file):
     try:
         text = []
         doc = Document(file)
-        for para in doc:
-             text.append(para)
-        return "/n".join(text)
+        for para in doc.paragraphs:
+             if para.text.strip():
+                 text.append(para.text)
+        return "\n".join(text)
     except Exception as e:
         raise Exception(f"word processing error: {str(e)}")
 
@@ -75,13 +76,15 @@ def analyze_resume():
             
             # Check file type
             if file.filename.lower().endswith('.pdf'):
-                return jsonify({"error": "Only PDF files are supported"}), 400
+                resume_text = extract_text_from_pdf(file.stream)
             elif file.filename.lower().endswith('.docx'):
-            # Extract text from PDF
-                word_text = extract_text_from_pdf(file.stream)
-                print(word_text)
+                resume_text = extract_text_from_word(file)    
+            else:
+                return jsonify({"error": "Only .pfd and .docx files are supported"}), 400
+            
         else:
             return jsonify({"error":"Unexpected Request Header"})
+        
         if not resume_text:
             return jsonify({"error": "No Text Found !"}), 400
         
