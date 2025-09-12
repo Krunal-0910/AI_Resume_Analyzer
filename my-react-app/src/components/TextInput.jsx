@@ -3,24 +3,12 @@ import { useContext } from "react";
 import { useState, useEffect, useRef } from "react";
 import ShowAnalyze from "./ShowAnalyze";
 
-// TextInput component with forwardRef to expose its value
 const TextInput = ({textareaRef,text,setText})=>{
-    // Set initial height based on placeholder content
-    
-     
-    // useEffect(() => {
-    //     if (textareaRef.current) {
-    //         textareaRef.current.style.height = 'auto';
-    //         textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
-    //     }
-    // }, [textareaRef.current]);
+
 
  const handleChange = (e) => {
         const newValue = e.target.value;
-      
-        // Auto-resize textarea
-        // e.target.style.height = 'auto';
-        // e.target.style.height = `${e.target.scrollHeight}px`;
+
         
         textareaRef.current = newValue
             setText(newValue)
@@ -33,8 +21,8 @@ const TextInput = ({textareaRef,text,setText})=>{
             <h2 className="text-2xl font-bold mb-4">Paste Resume Content Here:</h2>
             
             <textarea
-                // ref={textareaRef}
-                className="w-full p-4 border border-gray-300 rounded-lg resize-none overflow-hidden bg-gray-100"
+                
+                className="w-full p-4 border border-gray-300 rounded-lg resize-none w-full h-64 p-4 border border-gray-300 rounded-lg bg-gray-100 overflow-y-scroll resize-none bg-gray-100"
                 
                 value={text}
                 onChange={handleChange}
