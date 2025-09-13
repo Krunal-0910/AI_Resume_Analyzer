@@ -143,13 +143,11 @@ const completeRef = useRef(null);
              )}
 
              {error &&(
-              <div className=" mt-4 flex items-center gap-2 p-4 rounded-lg bg-green-100 border border-green-300"
-                   >
-                    
-                    <p className="text-green-700 font-medium">
-                     ❌ {error}
-                    </p>
-                  </div>
+              <div className=" mt-4 flex items-center gap-2 p-3 rounded-lg bg-red-100 border border-red-300 text-red-700">
+                <span className="text-red-600 text-lg">❌</span>
+                <p className="font-medium">{error}</p>
+              </div>
+
              )
               }
             </>

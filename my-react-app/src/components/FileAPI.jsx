@@ -25,7 +25,7 @@ const FileApi = async ( fileParse,setResults,setAnalysis_complete,setShowAnalyzi
                 if(e.message.includes("Failed to fetch")|| e.message.includes('NetworkError')){
                 setError("Cannot connect to the server")
               }
-                setError(e.message)
+              
                 setResults("")
                 setAnalysis_complete(false)
                 setShowAnalyzing(false)
