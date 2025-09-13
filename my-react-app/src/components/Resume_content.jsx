@@ -21,7 +21,6 @@ const Resume_content = ()=>{
     { id: "showAnalyze", label: "Analyze Resume" },
     { id: "showResults", label: "View Results" },
   ];
-    const[resumeText, sendResumeText] = useState("")
     const[showWarning,setWarning]=useState(false)
     const[inputMethod, setInputMethod] = useState("text")
     const [results, setResults]=useState("")
@@ -29,6 +28,7 @@ const Resume_content = ()=>{
     const [text, setText] = useState("")
     const [selectedFile, setSelectedFile] = useState(null);
     const[showAnalyzing, setShowAnalyzing] = useState(false)
+    const[error, setError] = useState("")
     const analyzingRef = useRef(null);
 const completeRef = useRef(null);
 
@@ -57,7 +57,7 @@ const completeRef = useRef(null);
 
     const handleAnalyze=()=>{
 
-        // if(inputMethod=="text"){
+        setError("")
         if(textareaRef.current==""){
           setWarning(true)
           return;
@@ -65,22 +65,21 @@ const completeRef = useRef(null);
          setShowAnalyzing(true)
         if (textareaRef.current instanceof FormData) {
 
-            FileApi(textareaRef.current, setResults, setAnalysis_complete,setShowAnalyzing)
+            FileApi(textareaRef.current, setResults, setAnalysis_complete,setShowAnalyzing,setError)
             
         }
         else{
-          console.log("------------------------------------")
-        Api(textareaRef.current, setResults, setAnalysis_complete,setShowAnalyzing)
+        Api(textareaRef.current, setResults, setAnalysis_complete,setShowAnalyzing,setError)
 
         setWarning(false)
  
-              // setShowAnalyze(false)
               }
             }
        
     
 
     const handleClear=()=>{
+      setError("")
       setAnalysis_complete(false)
       setResults(false)
       setResults("")
@@ -142,16 +141,25 @@ const completeRef = useRef(null);
                     </p>
                   </div>
              )}
-              
-             
+
+             {error &&(
+              <div className=" mt-4 flex items-center gap-2 p-4 rounded-lg bg-green-100 border border-green-300"
+                   >
+                    
+                    <p className="text-green-700 font-medium">
+                     ❌ {error}
+                    </p>
+                  </div>
+             )
+              }
             </>
            )
              
              :
-             
-             
+              
              (analysis_complete && <ShowResults results={results} setResults={setResults}/>)
             }
+            
            
         </div>
     )

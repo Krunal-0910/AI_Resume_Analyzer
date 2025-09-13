@@ -1,8 +1,7 @@
 import { useEffect } from "react";
-const Api = async ( resumeText, setResults,setAnalysis_complete,setShowAnalyzing ) => {
+const Api = async ( resumeText, setResults,setAnalysis_complete,setShowAnalyzing,setError ) => {
  
        
-            console.log("Sending to API:", resumeText);
             try{
                 const request = await fetch('http://127.0.0.1:5000/analyze', {
                   method: 'POST', // Specifies the method
@@ -15,17 +14,21 @@ const Api = async ( resumeText, setResults,setAnalysis_complete,setShowAnalyzing
                   }),
                 });
                 if (!request.ok){
-                    throw new Error("API fetching failed")
+                    throw new Error(`Server Error:${request.status} ${request.statusText} `)
                 }
                 const data = await request.json()
-                console.log(data)
                 
                 setResults(data)
                 setAnalysis_complete(true)
                 setShowAnalyzing(false)
             }
             catch(e){
-                console.error(e)
+              if(e.message.includes("Failed to fetch")|| e.message.includes('NetworkError')){
+                setError("Cannot connect to the server")
+              }
+                setResults("")
+                setAnalysis_complete(false)
+                setShowAnalyzing(false)
             }
                         // const data=
             // {'summary': 'A Computer Science student with a strong GPA and hands-on experience developing a social media web application using React, Node.js, and MySQL. Eager to apply technical skills and contribute to innovative projects, ideally in a software engineering role.', 
