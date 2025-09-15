@@ -13,7 +13,7 @@ const Hero=()=>{
 <>
 <div className="mt-18 ">
     <h1 className="ml-70 text-[50px] text-lg/10 text-black font-bold ">📄 AI Resume Analyzer Pro</h1>
-    <h3 className="ml-100 mt-8 font-mono font-semibold text-black-100">Powered by Google Gemini AI - Instant Professional Resume Analysis</h3>
+    <h3 className="ml-85 mt-8 font-mono font-semibold text-black-100">Powered by Google Gemini AI - Instant Professional Resume Analysis</h3>
             <div className="mt-8 flex justify-center flex-wrap gap-3">
             <span
               
