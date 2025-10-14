@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 const FileApi = async ( fileParse,setResults,setAnalysis_complete,setShowAnalyzing,setError ) => {
             try{
-                const request = await fetch('http://127.0.0.1:5000/analyze', {
+                const request = await fetch('https://hf2r3bcud7tqmpa6uu7e76rysi0lswam.lambda-url.us-east-2.on.aws/', {
                 method: 'POST', body: fileParse
                 });
                 if (!request.ok){
