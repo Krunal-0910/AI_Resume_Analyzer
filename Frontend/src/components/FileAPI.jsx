@@ -1,7 +1,34 @@
 import { useEffect } from "react";
 
 const FileApi = async ( fileParse, setResults, setAnalysis_complete, setShowAnalyzing, setError ) => {
+
+    let fileToProcess = fileParse;
     
+    // Check if the input is a FormData object (or similar iterable)
+    if (fileParse instanceof FormData) {
+        // Extract the actual File/Blob object from the FormData using the key 'resume'
+        // This key must match what was used in FileInput: formData.append('resume', file)
+        const fileFromForm = fileParse.get('resume');
+        
+        // Ensure the extracted item is a Blob/File object before proceeding
+        if (fileFromForm instanceof Blob) {
+            fileToProcess = fileFromForm;
+        } else {
+            // Handle error if 'resume' key is missing or not a file
+            setError("FormData received, but no valid file found under the key 'resume'.");
+            setResults("");
+            setAnalysis_complete(false);
+            setShowAnalyzing(false);
+            return;
+        }
+    } else if (!(fileParse instanceof Blob)) {
+        // Handle error if it's neither FormData nor a File/Blob
+        setError("Invalid input: Expected a File, Blob, or FormData object.");
+        setResults("");
+        setAnalysis_complete(false);
+        setShowAnalyzing(false);
+        return;
+    }
     
     const fileToBase64 = (file) => {
         return new Promise((resolve, reject) => {
