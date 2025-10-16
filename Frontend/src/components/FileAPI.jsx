@@ -45,12 +45,12 @@ const FileApi = async ( fileParse, setResults, setAnalysis_complete, setShowAnal
 
     try {
        
-        const base64Content = await fileToBase64(fileParse);
+        const base64Content = await fileToBase64(fileToProcess);
 
        
         const payload = JSON.stringify({
             file_content: base64Content,
-            file_type: fileParse.type
+            file_type: fileToProcess.type
         });
 
         
