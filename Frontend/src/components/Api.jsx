@@ -3,7 +3,7 @@ const Api = async ( resumeText, setResults,setAnalysis_complete,setShowAnalyzing
  
        
             try{
-                const request = await fetch('https://y4rhzez7nh7uwjdknqabi64vuy0ugynv.lambda-url.us-east-2.on.aws/analyze', {
+                const request = await fetch('https://y4rhzez7nh7uwjdknqabi64vuy0ugynv.lambda-url.us-east-2.on.aws/', {
                   method: 'POST', // Specifies the method
                   headers: {
                     'Content-Type': 'application/json', // Indicates the format of the body
